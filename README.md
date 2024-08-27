@@ -19,4 +19,4 @@ if __name__=='__main__':
     from engine._mod_ import update
     update(basename(__file__),'upload') # 'upload' or 'delete'
 ```
-- step 1 run your .py
+- step 4 run your .py
