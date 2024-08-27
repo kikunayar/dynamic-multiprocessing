@@ -6,10 +6,13 @@ import importlib.util
 process=[]
 name_process=[]
 def run_script(script_path,shared_dict):
+    try:
     spec = importlib.util.spec_from_file_location("module.name", script_path)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     module.start(shared_dict)
+    except Exception as e:
+        print(e)
 def run(setting_file_path,pool_folder_path,shared_dict):
     global process,name_process
     with open(setting_file_path, 'r+') as file:
