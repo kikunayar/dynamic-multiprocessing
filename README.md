@@ -1,22 +1,19 @@
 
 
 
-**USAGE**
+**Usage Instructions**
 
-
-
-- step 1 run start.py
-- step 2 upload your .py to pool folder
-- step 3 make sure your .py have below code
-  
+- 1 Start the system: Run start.py to initialize the Dynamic Multiprocessing system.
+- 2 Prepare your module: Create a Python file (.py) with the following structure:
 ```
 def start(shared_dict):
-  print("I can see",shared_dict)# <-- you can delete this
-  
-    
-if __name__=='__main__':
+    print("I can see", shared_dict)  # Optional: for debugging
+    # Your module logic here
+
+if __name__ == '__main__':
     from os.path import basename
     from engine._mod_ import update
-    update(basename(__file__),'upload') # 'upload' or 'delete'
+    update(basename(__file__), 'upload')  # Use 'delete' to remove the module
 ```
-- step 4 run your .py
+- 3 Add your module: Upload your Python file to the pool folder.
+- 4 Activate your module: Run your Python file to register it with the system.
