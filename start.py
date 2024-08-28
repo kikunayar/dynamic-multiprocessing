@@ -17,7 +17,7 @@ def run(setting_file_path,pool_folder_path,shared_dict):
     global process,name_process
     with open(setting_file_path, 'r+') as file:
         data = json.load(file)
-        for e,name in data["block"]:
+        for name in data["block"]:
             if name not in name_process:
                 if name in data["block"]:
                     data["block"].remove(name)
