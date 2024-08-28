@@ -17,27 +17,25 @@ def run(setting_file_path,pool_folder_path,shared_dict):
     global process,name_process
     with open(setting_file_path, 'r+') as file:
         data = json.load(file)
-        for name in data["block"]:
-            if name not in name_process:
-                if name in data["block"]:
-                    data["block"].remove(name)
-        for e,name in enumerate(name_process):
-            if name not in data["ready"]:
-                process[e].terminate()
-                if name in data["block"]:
-                    data["block"].remove(name)
-        if len(data["ready"])!=0:
-            for r in data["ready"]:
-                if r not in data['block']:
-                    if r in name_process:
-                        ridx=name_process.index(r)
-                        process[ridx].terminate()
+        for r in data["ready"]:
+            if r not in data['block']:
+                if r not in name_process:
+                    print("NOT IN",r,name_process)
                     data['block'].append(r)
                     script_path = os.path.join(pool_folder_path, r)
                     p = multiprocessing.Process(target=run_script, args=(script_path,shared_dict,))
                     p.start()
                     process.append(p)
                     name_process.append(r)
+                elif r in name_process:
+                    ridx=name_process.index(r)
+                    process[ridx].terminate()
+                    del process[ridx]
+                    name_process.remove(r)
+                    print("????",ridx,r)
+            elif r in data['block']:
+                if r not in name_process:
+                    data['block'].remove(r)
         file.seek(0)
         json.dump(data, file,indent=1)
         file.truncate()
