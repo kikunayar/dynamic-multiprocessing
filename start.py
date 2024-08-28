@@ -20,7 +20,6 @@ def run(setting_file_path,pool_folder_path,shared_dict):
         for r in data["ready"]:
             if r not in data['block']:
                 if r not in name_process:
-                    print("NOT IN",r,name_process)
                     data['block'].append(r)
                     script_path = os.path.join(pool_folder_path, r)
                     p = multiprocessing.Process(target=run_script, args=(script_path,shared_dict,))
@@ -32,7 +31,6 @@ def run(setting_file_path,pool_folder_path,shared_dict):
                     process[ridx].terminate()
                     del process[ridx]
                     name_process.remove(r)
-                    print("????",ridx,r)
             elif r in data['block']:
                 if r not in name_process:
                     data['block'].remove(r)
