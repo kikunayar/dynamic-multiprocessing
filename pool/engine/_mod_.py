@@ -7,7 +7,7 @@ def update(new_entry,key):
     file_path = os.path.join(current_directory, "setting.json")
     with open(file_path, 'r+') as file:
         data = json.load(file)
-        if key=='upload':
+        if key=='replace':
             if new_entry in data['block']:
                 data['block'].remove(new_entry)
             if new_entry not in data['ready']:
