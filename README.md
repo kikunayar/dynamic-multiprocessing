@@ -13,7 +13,7 @@ def start(shared_dict):
 if __name__ == '__main__':
     from os.path import basename
     from engine._mod_ import update
-    update(basename(__file__), 'upload')  # Use 'delete' to remove the module
+    update(basename(__file__), 'replace')  # Use 'delete' to remove the module
 ```
 - 3 Add your module: Upload your Python file to the pool folder.
 - 4 Activate your module: Run your Python file to register it with the system.
